@@ -1,0 +1,32 @@
+@import "./../node_modules/fontsource-roboto/latin-ext.css";
+@import "./../node_modules/fontsource-roboto/cyrillic-ext-400.css";
+@import "./../node_modules/fontsource-roboto/greek-700-normal.css";
+
+
+* {box-sizing: border-box;}
+body {
+  background: #e6f4fd;
+  font-family: 'Roboto', sans-serif;
+}
+.ui-form {
+  max-width: 600px;
+  overflow: auto;
+  margin: 50px auto 30px;
+  background: white;
+}
+.ui-form h3 {
+  position: relative;
+  z-index: 5;
+  margin: 0 0 60px;
+  text-align: center;
+  color: #4a90e2;
+  font-size: 30px;
+  font-weight: normal;
+}
+
+.form-row {
+
+  margin-bottom: 30px;
+  overflow: auto;
+}
+
