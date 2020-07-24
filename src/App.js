@@ -14,7 +14,7 @@ import Tabs from "@material-ui/core/Tabs";
 
 
 function TabPanel(props) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -75,18 +75,23 @@ export function NavTabs() {
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs
-                    variant="fullWidth"
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="nav tabs example"
-                >
-                    <LinkTab label="Вход" href="/drafts" {...a11yProps(0)} />
-                    <LinkTab label="Регистрация" href="/trash" {...a11yProps(1)} />
-                    <LinkTab label="Восстановление" href="/spam" {...a11yProps(2)} />
-                </Tabs>
-            </AppBar>
+            <Grid
+                container
+
+            >
+                <AppBar position="static">
+                    <Tabs
+                        variant="fullWidth"
+                        value={value}
+                        onChange={handleChange}
+                        aria-label="nav tabs example"
+                    >
+                        <LinkTab label="Вход" href="/drafts" {...a11yProps(0)} />
+                        <LinkTab label="Регистрация" href="/trash" {...a11yProps(1)} />
+                        <LinkTab label="Восстановление" href="/spam" {...a11yProps(2)} />
+                    </Tabs>
+                </AppBar>
+            </Grid>
             <TabPanel value={value} index={0}>
                 <Auth_page/>
             </TabPanel>
@@ -96,6 +101,7 @@ export function NavTabs() {
             <TabPanel value={value} index={2}>
                 <Req_page/>
             </TabPanel>
+
         </div>
     );
 }
@@ -143,47 +149,62 @@ const Auth_page = () => (
 
                 <form onSubmit={handleSubmit} className="ui-form">
                     <Grid
-                        container
+                        container spacing={12}
                         direction="column"
-                        justify=""
+                        justify="center"
                         alignItems="center"
                     >
 
                         <h3>Авторизация</h3>
-                        <div className="form-row">
-                            <TextField
-                                id="email"
-                                type="email"
-                                label="Email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    className="field"
+                                    id="email"
+                                    type="email"
+                                    label="Email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
 
-                            {errors.email && touched.email && errors.email}
-                        </div>
-                        <div className="form-row">
-                            <TextField
-                                id="password"
-                                type="password"
-                                label="Password"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.password}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
+                                {errors.email && touched.email && errors.email}
+                            </div>
+                        </Grid>
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    id="password"
+                                    type="password"
+                                    label="Password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
-                            {errors.password && touched.password && errors.password}
-                        </div>
-                        <p>
-                            <Button type="submit" disabled={isSubmitting}>
-                                Login
-                            </Button>
-                        </p>
+                                {errors.password && touched.password && errors.password}
+                            </div>
+                        </Grid>
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            Login
+                        </Button>
+
+
                     </Grid>
                 </form>
             )}
@@ -194,7 +215,7 @@ const Auth_page = () => (
 const Reg_page = () => (
     <div>
         <Formik
-            initialValues={{name: '',email: '', password: ''}}
+            initialValues={{name: '', email: '', password: ''}}
             validate={values => {
                 const errors = {};
                 if (!values.email) {
@@ -226,58 +247,79 @@ const Reg_page = () => (
 
                 <form onSubmit={handleSubmit} className="ui-form">
                     <Grid
-                        container
+                        container spacing={12}
                         direction="column"
                         justify="center"
                         alignItems="center"
                     >
 
                         <h3>Регистрация</h3>
-                        <div className="form-row">
-                            <TextField
-                                id="name"
-                                type="name"
-                                label="Имя"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.name}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
-                            {errors.email && touched.email && errors.email}
-                        </div>
-                        <div className="form-row">
-                            <TextField
-                                id="email"
-                                type="email"
-                                label="Email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
-                            {errors.email && touched.email && errors.email}
-                        </div>
-                        <div className="form-row">
-                            <TextField
-                                id="password"
-                                type="password"
-                                label="Password"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.password}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    id="name"
+                                    type="name"
+                                    label="Имя"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.name}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                                {errors.email && touched.email && errors.email}
+                            </div>
+                        </Grid>
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    id="email"
+                                    type="email"
+                                    label="Email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
+                                {errors.email && touched.email && errors.email}
+                            </div>
+                        </Grid>
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    id="password"
+                                    type="password"
+                                    label="Password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
-                            {errors.password && touched.password && errors.password}
-                        </div>
-                        <p>
-                            <Button type="submit" disabled={isSubmitting}>
-                                Registrate
-                            </Button>
-                        </p>
+                                {errors.password && touched.password && errors.password}
+                            </div>
+                        </Grid>
+
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            Registrate
+                        </Button>
+
                     </Grid>
                 </form>
             )}
@@ -327,26 +369,34 @@ const Req_page = () => (
                     >
 
                         <h3>Восстановление</h3>
-                        <div className="form-row">
-                            <TextField
-                                id="email"
-                                type="email"
-                                label="Email"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                                required autocomplete="off"
-                                variant="outlined"
-                            />
+                        <Grid
+                            item xs={6} xl container
+                            justify=""
+                            alignItems="center"
+                        >
+                            <div className="form-row">
+                                <TextField
+                                    id="email"
+                                    type="email"
+                                    label="Email"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.email}
+                                    required autocomplete="off"
+                                    variant="outlined"
+                                    fullWidth
+                                />
 
 
-                            {errors.email && touched.email && errors.email}
-                        </div>
-                        <p>
-                            <Button type="submit" disabled={isSubmitting}>
-                                Reset
-                            </Button>
-                        </p>
+                                {errors.email && touched.email && errors.email}
+                            </div>
+
+                        </Grid>
+
+                        <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
+                            Reset
+                        </Button>
+
                     </Grid>
                 </form>
             )}
